@@ -1,9 +1,12 @@
 package cucumber.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class AgilePage extends BasePage {
 
@@ -11,19 +14,28 @@ public class AgilePage extends BasePage {
         super(webDriver, wait);
     }
 
+    @FindBy(css = "input[name='uid']")
+    WebElement usernameInput;
+    @FindBy(css = "input[name='password']")
+    WebElement passwordInput;
+    @FindBy(css = "input[value='LOGIN']")
+    WebElement loginButton;
+    @FindBy(className = "barone")
+    List<WebElement> welcomeMessage;
+
     public void enterUsername(String user) {
-        webDriver.findElement(By.cssSelector("input[name='uid']")).sendKeys(user);
+        usernameInput.sendKeys(user);
     }
 
     public void enterPassword(String password) {
-        webDriver.findElement(By.cssSelector("input[name='password']")).sendKeys(password);
+        passwordInput.sendKeys(password);
     }
 
     public void clickOnLoginButton() {
-        webDriver.findElement(By.cssSelector("input[value='LOGIN']")).click();
+        loginButton.click();
     }
 
     public void verifyWelcomeMessage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("barone")));
+        wait.until(ExpectedConditions.visibilityOfAllElements(welcomeMessage));
     }
 }

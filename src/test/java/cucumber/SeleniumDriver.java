@@ -1,5 +1,6 @@
 package cucumber;
 
+import constants.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +18,7 @@ public class SeleniumDriver {
     }
 
     static WebDriverWait initWaiter(){
-        wait = new WebDriverWait(webDriver, 5);
+        wait = new WebDriverWait(webDriver, Constants.defaultTimeoutSeconds);
         return wait;
     }
 }
