@@ -1,5 +1,6 @@
 package cucumber.steps;
 
+import constants.Constants;
 import cucumber.SeleniumDriver;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -38,10 +39,7 @@ public class PaymentSteps {
 
     @When("enter card details")
     public void enter_card_details() {
-        String cardNumber = "1111222233334444";
-        String expirationMonthValue = "11";
-        String expirationYearValue = "2019";
-        paymentPage.entercardDetails(cardNumber, expirationMonthValue, expirationYearValue);
+        paymentPage.entercardDetails(Constants.cardNumber, Constants.expirationMonthValue, Constants.expirationYearValue);
     }
 
     @Then("{string} message is shown")
