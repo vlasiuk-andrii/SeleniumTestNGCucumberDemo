@@ -1,3 +1,6 @@
 *r.xml
 *c.xml
 *.iml
+*s.xml
+.idea/
+target/
