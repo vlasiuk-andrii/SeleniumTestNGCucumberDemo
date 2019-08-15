@@ -5,14 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage {
-
-    WebDriver webDriver;
-    WebDriverWait wait;
+public class HomePage extends BasePage {
 
     public HomePage(WebDriver webDriver, WebDriverWait wait) {
-        this.webDriver = webDriver;
-        this.wait = wait;
+        super(webDriver, wait);
     }
 
     public void navigate() {
