@@ -20,4 +20,9 @@ public class HomePage extends BasePage {
         webDriver.findElement(By.cssSelector("a[href*='Agile']")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='uid']")));
     }
+
+    public void navigateToPaymentPage() {
+        webDriver.findElement(By.cssSelector("a[href*='payment']")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[src*='Toy']")));
+    }
 }
