@@ -1,9 +1,13 @@
 package cucumber.pages;
 
-import org.openqa.selenium.By;
+import constants.Constants;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class HomePage extends BasePage {
 
@@ -11,18 +15,27 @@ public class HomePage extends BasePage {
         super(webDriver, wait);
     }
 
+    @FindBy(css = "a[href*='Agile']")
+    WebElement agilePageLink;
+    @FindBy(css = "a[href*='payment']")
+    WebElement paymentPageLink;
+    @FindBy(css = "input[name='uid']")
+    List<WebElement> usernameInputs;
+    @FindBy(css = "img[src*='Toy']")
+    List<WebElement> paymentPageImages;
+
     public void navigate() {
-        webDriver.get("http://demo.guru99.com");
-        wait.until(ExpectedConditions.titleIs("Guru99 Bank Home Page"));
+        webDriver.get(Constants.homePageUrl);
+        wait.until(ExpectedConditions.titleIs(Constants.homePageTitle));
     }
 
     public void navigateToAgilePage() {
-        webDriver.findElement(By.cssSelector("a[href*='Agile']")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='uid']")));
+        agilePageLink.click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(usernameInputs));
     }
 
     public void navigateToPaymentPage() {
-        webDriver.findElement(By.cssSelector("a[href*='payment']")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[src*='Toy']")));
+        paymentPageLink.click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(paymentPageImages));
     }
 }

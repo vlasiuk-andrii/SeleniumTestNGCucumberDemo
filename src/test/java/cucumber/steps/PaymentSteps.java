@@ -39,7 +39,7 @@ public class PaymentSteps {
 
     @When("enter card details")
     public void enter_card_details() {
-        paymentPage.entercardDetails(Constants.cardNumber, Constants.expirationMonthValue, Constants.expirationYearValue);
+        paymentPage.entercardDetails(Constants.cardNumber, Constants.expirationMonthValue, Constants.expirationYearValue, Constants.cvvCode);
     }
 
     @Then("{string} message is shown")

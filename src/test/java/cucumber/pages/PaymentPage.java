@@ -1,7 +1,10 @@
 package cucumber.pages;
 
+import constants.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,9 +15,20 @@ public class PaymentPage extends BasePage {
         super(webDriver, wait);
     }
 
+    @FindBy(css = "select[name='quantity']")
+    WebElement quantityDropDown;
+    @FindBy(id = "card_nmuber")
+    WebElement cardNumberInput;
+    @FindBy(id = "month")
+    WebElement monthDropDown;
+    @FindBy(id = "year")
+    WebElement yearDropDown;
+    @FindBy(id = "cvv_code")
+    WebElement cvvInput;
+
     public void chooseQuantity(String quantity) {
-        Select quantitySelect = new Select(webDriver.findElement(By.cssSelector("select[name='quantity']")));
-        quantitySelect.selectByValue(quantity);
+        Select select = new Select(quantityDropDown);
+        select.selectByValue(quantity);
     }
 
     public void clickOnButton(String buttonName) {
@@ -25,12 +39,12 @@ public class PaymentPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + text + "')]")));
     }
 
-    public void entercardDetails(String cardNumber, String expirationMonthValue, String expirationYearValue) {
-        webDriver.findElement(By.id("card_nmuber")).sendKeys(cardNumber);
-        Select expirationMonth = new Select(webDriver.findElement(By.id("month")));
+    public void entercardDetails(String cardNumber, String expirationMonthValue, String expirationYearValue, String cvvCode) {
+        cardNumberInput.sendKeys(cardNumber);
+        Select expirationMonth = new Select(monthDropDown);
         expirationMonth.selectByValue(expirationMonthValue);
-        Select expirationYear = new Select(webDriver.findElement(By.id("year")));
+        Select expirationYear = new Select(yearDropDown);
         expirationYear.selectByValue(expirationYearValue);
-        webDriver.findElement(By.id("cvv_code"));
+        cvvInput.sendKeys(cvvCode);
     }
 }
