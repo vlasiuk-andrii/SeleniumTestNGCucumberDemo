@@ -34,20 +34,25 @@ public class PaymentSteps {
 
     @When("enter card details")
     public void enter_card_details() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        String cardNumber = "1111222233334444";
+        String expirationMonthValue = "11";
+        String expirationYearValue = "2019";
+        webDriver.findElement(By.id("card_nmuber")).sendKeys(cardNumber);
+        Select expirationMonth = new Select(webDriver.findElement(By.id("month")));
+        expirationMonth.selectByValue(expirationMonthValue);
+        Select expirationYear = new Select(webDriver.findElement(By.id("year")));
+        expirationYear.selectByValue(expirationYearValue);
+        webDriver.findElement(By.id("cvv_code"));
     }
 
     @When("click on {string}")
-    public void click_on(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    public void click_on(String buttonName) {
+        webDriver.findElement(By.cssSelector("input[value='" + buttonName + "']")).click();
     }
 
     @Then("{string} message is shown")
-    public void message_is_shown(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    public void message_is_shown(String succesfullPaymentText) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + succesfullPaymentText +"')]")));
     }
 
 }
